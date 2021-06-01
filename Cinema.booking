@@ -1,0 +1,40 @@
+system Cinema {
+external function1(test)
+
+customer Client {
+	name: string
+	age: int
+	height:int
+	isVip:bool
+	discount: int[]
+} 
+
+customer Admin extends Client {
+	has one cli : Client
+	constraint (age <= 10)
+}
+
+entity CinemaHall {
+	name: string
+	city:string
+	Imax: bool
+	has one cli:Client
+}
+
+resource Seat {
+	name: string
+	weight: int
+	has many nightPlans : NightPlan
+}
+
+booking CinemaBooking {
+	name: string
+	has one client : Client
+	has one seat : Seat
+	has one plan : NightPlan
+}
+
+schedule NightPlan {
+	name:string
+}
+}
